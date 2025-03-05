@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ idea.title }} - Стартап Идеи{% endblock %}
+
+{% block content %}
+    <div class="idea-detail">
+        <h1 class="idea-title">{{ idea.title }}</h1>
+
+        <div class="idea-meta">
+            Автор: {{ idea.author.username }} | {{ idea.date_posted.strftime('%d.%m.%Y %H:%M') }}
+        </div>
+
+        <div class="idea-content">
+            {{ idea.description }}
+        </div>
+
+        <div class="votes">
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('vote', idea_id=idea.id, value=1) }}" class="vote-btn">👍 За</a>
+                <span class="vote-count">{{ idea.vote_count }}</span>
+                <a href="{{ url_for('vote', idea_id=idea.id, value=-1) }}" class="vote-btn">👎 Против</a>
+            {% else %}
+                <span>Голоса: {{ idea.vote_count }}</span>
+                <p><small><a href="{{ url_for('login') }}">Войдите</a>, чтобы проголосовать</small></p>
+            {% endif %}
+        </div>
+
+        <div class="comments">
+            <h3>Комментарии ({{ idea.comments|length }})</h3>
+
+            {% if 'user_id' in session %}
+                <form method="POST" action="{{ url_for('add_comment', idea_id=idea.id) }}" class="comment-form">
+                    <div>
+                        <label for="content">Добавить комментарий:</label>
+                        <textarea id="content" name="content" rows="3" required></textarea>
+                    </div>
+                    <button type="submit">Отправить</button>
+                </form>
+            {% else %}
+                <p><a href="{{ url_for('login') }}">Войдите</a>, чтобы комментировать</p>
+            {% endif %}
+
+            {% if idea.comments %}
+                {% for comment in idea.comments|sort(attribute='date_posted', reverse=true) %}
+                    <div class="comment">
+                        <div class="comment-content">
+                            {{ comment.content }}
+                        </div>
+                        <div class="comment-meta">
+                            - {{ comment.author.username }}, {{ comment.date_posted.strftime('%d.%m.%Y %H:%M') }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Комментариев пока нет. Будьте первым, кто прокомментирует эту идею!</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <a href="{{ url_for('home') }}" class="back-btn">← Назад к списку идей</a>
+{% endblock %}

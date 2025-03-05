@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Стартап Идеи{% endblock %}
+
+{% block content %}
+    <h1>Идеи для стартапов</h1>
+
+    <p>Добро пожаловать на платформу краудсорсинга идей для стартапов. Здесь вы можете предлагать свои идеи, голосовать за другие и совместно улучшать их.</p>
+
+    {% if 'user_id' not in session %}
+        <p><a href="{{ url_for('login') }}">Войдите</a> или <a href="{{ url_for('register') }}">зарегистрируйтесь</a>, чтобы добавлять идеи и голосовать!</p>
+    {% else %}
+        <p><a href="{{ url_for('submit_idea') }}" class="button">Добавить новую идею</a></p>
+    {% endif %}
+
+    <h2>Последние идеи</h2>
+
+    {% if ideas %}
+        {% for idea in ideas %}
+            <div class="idea-card">
+                <h3 class="idea-title">
+                    <a href="{{ url_for('idea_detail', idea_id=idea.id) }}">{{ idea.title }}</a>
+                </h3>
+                <div class="idea-meta">
+                    Автор: {{ idea.author.username }} | {{ idea.date_posted.strftime('%d.%m.%Y %H:%M') }}
+                </div>
+                <p>{{ idea.description[:200] }}{% if idea.description|length > 200 %}...{% endif %}</p>
+                <div class="idea-stats">
+                    <span>👍 {{ idea.vote_count }}</span>
+                    <span>💬 {{ idea.comments|length }}</span>
+                    <a href="{{ url_for('idea_detail', idea_id=idea.id) }}">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока нет идей. Будьте первым, кто добавит идею!</p>
+    {% endif %}
+{% endblock %}

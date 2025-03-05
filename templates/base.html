@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Краудсорсинг идей для стартапов{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('home') }}">Стартап Идеи</a>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Главная</a>
+                {% if 'user_id' in session %}
+                    <a href="{{ url_for('submit_idea') }}">Добавить идею</a>
+                    <a href="{{ url_for('logout') }}">Выйти ({{ session['username'] }})</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Войти</a>
+                    <a href="{{ url_for('register') }}">Регистрация</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li class="flash-message">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+    <script>
+    // Функция для автоматического скрытия flash-сообщений
+    function autoDismissFlashMessages() {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(message => {
+            // Устанавливаем таймер для скрытия сообщения через 5 секунд
+            setTimeout(() => {
+                message.style.opacity = '0'; // Плавное исчезновение
+                setTimeout(() => message.remove(), 500); // Удаление из DOM после анимации
+            }, 3000); // Сообщение исчезнет через 5 секунд
+        });
+    }
+
+    // Запуск функции при загрузке страницы
+    document.addEventListener('DOMContentLoaded', autoDismissFlashMessages);
+</script>
+</body>
+</html>

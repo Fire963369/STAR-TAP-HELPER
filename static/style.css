@@ -1,0 +1,328 @@
+/* Подключение шрифта Manrope с поддержкой кириллицы */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap&subset=cyrillic');
+
+/* Базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+
+body {
+    background-color: #0F172A;
+    color: #E2E8F0;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Шапка */
+header {
+    background-color: #1E293B;
+    border: 1px solid #334155;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    margin: 20px 50px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+header:hover {
+    box-shadow: 0 0 15px #38BDF8;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    color: #38BDF8;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.03em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #94A3B8;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: all 0.5s ease;
+    padding: 0.5rem 0.5rem;
+    border-radius: 15px;
+}
+
+/* Добавьте это в ваш CSS */
+a {
+    color: #94A3B8; /* Цвет для обычных ссылок */
+    text-decoration: none;
+}
+
+a:visited {
+    color: #94A3B8; /* Цвет для посещенных ссылок */
+}
+
+a:hover {
+    background: #1E293B;
+}
+
+a:active {
+    color: #38BDF8; /* Цвет при активном состоянии (клике) */
+}
+
+.nav-links a:hover {
+    background: #1E293B;
+    color: #38BDF8;
+}
+
+/* Карточки идей */
+.idea-card {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.idea-card:hover {
+    box-shadow: 0 0 15px #38BDF8;
+}
+
+.idea-title a {
+    color: #F8FAFC;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.idea-meta {
+    color: #64748B;
+    font-size: 0.875rem;
+    margin: 0.5rem 0;
+}
+
+.idea-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    color: #64748B;
+}
+
+/* Формы */
+.auth-form, .idea-form {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0F172A;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    color: #E2E8F0;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Комментарии */
+.comments {
+    margin-top: 2rem;
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.comment {
+    padding: 1rem 0;
+    border-bottom: 1px solid #334155;
+    border-radius: 15px;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-content {
+    color: #E2E8F0;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    border-radius: 15px;
+}
+
+.comment-meta {
+    color: #64748B;
+    font-size: 0.875rem;
+    border-radius: 15px;
+}
+
+/* Стили для формы комментариев */
+.comment-form {
+    margin-bottom: 2rem;
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0F172A;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    color: #E2E8F0;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 120px;
+    margin-bottom: 1rem;
+}
+
+.comment-form textarea:focus {
+    border-color: #38BDF8;
+    outline: none;
+    box-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+}
+
+/* Голосование */
+.votes {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.vote-btn {
+    background: #1E293B;
+    border: 1px solid #334155;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    color: #94A3B8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.vote-btn:hover {
+    border-color: #38BDF8;
+    color: #38BDF8;
+}
+
+.vote-count {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #38BDF8;
+}
+
+/* Всплывающие сообщения */
+.flash-messages {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    transition: opacity 1s ease-out;
+}
+
+.flash-message {
+    background: #1E293B;
+    border: 1px solid #334155;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #38BDF8;
+    transition: opacity 1s ease-out;
+}
+
+/* Элементы DeepSeek */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #94A3B8;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+    color: #38BDF8;
+}
+
+.form-help {
+    color: #64748B;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.idea-card, .comments, .auth-form {
+    animation: fadeIn 0.4s ease-out;
+}
